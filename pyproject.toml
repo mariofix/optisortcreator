@@ -1,0 +1,27 @@
+[tool.poetry]
+name = "svsagro-ops"
+version = "0.1.0"
+description = "SVS Agro Ops"
+authors = ["Mario Hernandez <mariofix@pm.me>"]
+readme = "README.md"
+packages = [{include = "svsagro"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+python-dotenv = "^0.21.0"
+thankyou = "^0.0.1"
+flask-admin = "^1.6.0"
+flask-sqlalchemy = "^3.0.2"
+flask-migrate = "^3.1.0"
+flask-babelex = "^0.9.4"
+
+
+[tool.poetry.group.dev.dependencies]
+pytest-cov = "^4.0.0"
+pytest = "^7.2.0"
+coverage = "^6.5.0"
+black = "^22.10.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

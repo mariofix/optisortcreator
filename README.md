@@ -1,2 +1,2 @@
-# optisortcreator
-Django App to create Optisort parameters files
+# SVS Agro
+SVS Ops Management
