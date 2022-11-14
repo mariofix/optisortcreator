@@ -1,8 +1,13 @@
-from flask import Flask, session, request
+from flask import Flask, session, request, url_for
 from svsagro.database import db, migrations
 from svsagro.admin import admin_site
+from svsagro.models import User, Role
+from svsagro.mail import mail
 from flask_babelex import Babel
 from flask_debugtoolbar import DebugToolbarExtension
+from flask_security import Security, SQLAlchemyUserDatastore
+from flask_admin import helpers as admin_helpers
+from flask_adminlte3 import AdminLTE3
 
 
 def create_app():
@@ -12,10 +17,15 @@ def create_app():
 
     toolbar = DebugToolbarExtension(app)
     babel = Babel(app)
+    adminlte = AdminLTE3(app)
 
     db.init_app(app)
     migrations.init_app(app, db, render_as_batch=True)
     admin_site.init_app(app)
+    mail.init_app(app)
+
+    user_datastore = SQLAlchemyUserDatastore(db, User, Role)
+    security = Security(app, user_datastore)
 
     @babel.localeselector
     def get_locale():
@@ -23,8 +33,24 @@ def create_app():
             session["lang"] = request.args.get("lang")
         return session.get("lang", "en")
 
+    @babel.timezoneselector
+    def get_timezone():
+        user = getattr(g, "user", None)
+        if user is not None:
+            return user.timezone
+
+    @security.context_processor
+    def security_context_processor():
+        return dict(
+            admin_base_template=admin_site.base_template,
+            admin_view=admin_site.index_view,
+            h=admin_helpers,
+            get_url=url_for,
+        )
+
     @app.get("/")
     def home():
-        return "<html><body>home</body></html>"
+        app.logger.info("home")
+        return "<html><body>/</body></html>"
 
     return app
