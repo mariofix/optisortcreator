@@ -1,0 +1,63 @@
+# German translations for PROJECT.
+# Copyright (C) 2022 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2022-11-15 01:21-0300\n"
+"PO-Revision-Date: 2022-11-15 00:50-0300\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: de\n"
+"Language-Team: de <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.11.0\n"
+
+#: svsagro/admin.py:29
+msgid "Logout"
+msgstr ""
+
+#: svsagro/admin.py:65
+msgid "New Password"
+msgstr ""
+
+#: svsagro/admin.py:82 svsagro/admin.py:83
+msgid "Security"
+msgstr ""
+
+#: svsagro/templates/myadmin3/my_index.html:8
+#: svsagro/templates/myadmin3/my_index.html:13
+msgid "Dashboard"
+msgstr ""
+
+#: svsagro/templates/myadmin3/my_index.html:12
+#: svsagro/templates/myadmin3/my_master.html:6
+msgid "Home"
+msgstr ""
+
+#: svsagro/templates/myadmin3/my_master.html:11
+msgid "Search"
+msgstr ""
+
+#: svsagro/templates/myadmin3/my_master.html:74
+#: svsagro/templates/security/_menu.html:4
+msgid "Login"
+msgstr ""
+
+#: svsagro/templates/security/_menu.html:6
+msgid "Register"
+msgstr ""
+
+#: svsagro/templates/security/_menu.html:9
+msgid "Forgot password"
+msgstr ""
+
+#: svsagro/templates/security/_menu.html:12
+msgid "Confirm account"
+msgstr ""
+

@@ -1,10 +1,12 @@
 from flask_admin import Admin, expose, AdminIndexView
+from flask_admin.base import MenuLink
 from svsagro.database import db
 from svsagro.models import Customer, Machine, Contact, User, Role
 from svsagro.mixins import SecureModelView, AuthModelView
 from flask_security import hash_password
 from wtforms.fields import PasswordField
 from slugify import slugify
+from flask_babel import lazy_gettext as _
 
 
 class MyAdminIndexView(AdminIndexView):
@@ -24,6 +26,7 @@ admin_site = Admin(
     base_template="myadmin3/my_master.html",
     index_view=MyAdminIndexView(url="/admin.site"),
 )
+admin_site.add_link(MenuLink(name=_("Logout"), url="/logout"))
 
 
 class CustomerAdminView(SecureModelView):
@@ -59,7 +62,7 @@ class UserAdminView(SecureModelView):
 
     def scaffold_form(self):
         form_class = super(UserAdminView, self).scaffold_form()
-        form_class.password2 = PasswordField("New Password")
+        form_class.password2 = PasswordField(_("New Password"))
         return form_class
 
     def on_model_change(self, form, model, is_created):
@@ -76,7 +79,7 @@ class RoleAdminView(SecureModelView):
 
 
 admin_site.add_view(CustomerAdminView(Customer, db.session, category="SVS Agro"))
-admin_site.add_view(UserAdminView(User, db.session, category="Security"))
-admin_site.add_view(RoleAdminView(Role, db.session, category="Security"))
+admin_site.add_view(UserAdminView(User, db.session, category=_("Security")))
+admin_site.add_view(RoleAdminView(Role, db.session, category=_("Security")))
 admin_site.add_view(ContactAdminView(Contact, db.session, category="SVS Agro"))
 admin_site.add_view(MachineAdminView(Machine, db.session, category="Strauss"))

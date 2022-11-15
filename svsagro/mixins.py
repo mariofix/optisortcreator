@@ -4,6 +4,7 @@ from flask import redirect, url_for, request, current_app
 from flask_admin.form import SecureForm
 from flask_admin.contrib.sqla import ModelView
 from flask_security import current_user
+from flask_admin.contrib.fileadmin import FileAdmin
 
 
 class TimestampMixin:
@@ -11,6 +12,27 @@ class TimestampMixin:
     updated_at = db.Column(
         db.DateTime, nullable=False, default=datetime.now, onupdate=datetime.now
     )
+
+
+class CustomFileAdmin(FileAdmin):
+    """
+    For AdminLTE3 Views
+    """
+
+    list_template = "flask-admin/file/list.html"
+
+    upload_template = "flask-admin/file/form.html"
+    mkdir_template = "flask-admin/file/form.html"
+    rename_template = "flask-admin/file/form.html"
+    edit_template = "flask-admin/file/form.html"
+
+    upload_modal_template = "flask-admin/file/modals/form.html"
+    mkdir_modal_template = "flask-admin/file/modals/form.html"
+    rename_modal_template = "flask-admin/file/modals/form.html"
+    edit_modal_template = "flask-admin/file/modals/form.html"
+    extra_css = [
+        "https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/4.1.5/css/flag-icons.min.css"
+    ]
 
 
 class CustomModelView(ModelView):

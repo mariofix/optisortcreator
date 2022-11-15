@@ -3,6 +3,7 @@ from svsagro.mixins import TimestampMixin
 from sqlalchemy.orm import relationship, backref
 from datetime import datetime
 from flask_security import UserMixin, RoleMixin
+from sqlalchemy_utils import generic_repr
 
 
 class RolesUsers(db.Model):
@@ -61,6 +62,7 @@ class User(db.Model, UserMixin, TimestampMixin):
         return self.staff
 
 
+@generic_repr
 class Customer(db.Model, TimestampMixin):
     __tablename__ = "svs_customer"
 
@@ -72,6 +74,7 @@ class Customer(db.Model, TimestampMixin):
         return self.name
 
 
+@generic_repr
 class Contact(db.Model, TimestampMixin):
     __tablename__ = "svs_contact"
 
@@ -85,14 +88,29 @@ class Contact(db.Model, TimestampMixin):
         return f"{self.name} <{self.email}>"
 
 
+@generic_repr
 class Machine(db.Model, TimestampMixin):
     __tablename__ = "svs_machine"
 
     id = db.Column(db.Integer, primary_key=True)
     number = db.Column(db.String(7), nullable=False, unique=True)
     type = db.Column(db.String(10), nullable=False)
+    model = db.Column(db.String(32), nullable=True)
+    direction = db.Column(db.String(10), nullable=False, default="Left")
+    instalation_date = db.Column(db.Date())
     customer_id = db.Column(db.Integer, db.ForeignKey("svs_customer.id"))
     customer = relationship("Customer")
+
+    def __str__(self):
+        return self.number
+
+
+@generic_repr
+class Document(db.Model, TimestampMixin):
+    __tablename__ = "svs_document"
+
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(1024), nullable=False)
 
     def __str__(self):
         return self.number

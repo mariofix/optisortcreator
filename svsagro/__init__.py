@@ -3,7 +3,7 @@ from svsagro.database import db, migrations
 from svsagro.admin import admin_site
 from svsagro.models import User, Role
 from svsagro.mail import mail
-from flask_babelex import Babel
+from flask_babel import Babel
 from flask_debugtoolbar import DebugToolbarExtension
 from flask_security import Security, SQLAlchemyUserDatastore
 from flask_admin import helpers as admin_helpers
