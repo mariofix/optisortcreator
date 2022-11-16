@@ -40,6 +40,7 @@ class CustomerAdminView(SecureModelView):
             ("CA", "Canada"),
         ]
     }
+    column_list = ["name", "country"]
 
 
 class MachineAdminView(AuthModelView):
@@ -50,10 +51,11 @@ class MachineAdminView(AuthModelView):
             ("gubbuncher", "Gub Buncher"),
         ]
     }
+    column_list = ["number", "type", "model", "direction", "customer"]
 
 
 class ContactAdminView(SecureModelView):
-    pass
+    column_list = ["name", "email", "customer"]
 
 
 class UserAdminView(SecureModelView):
