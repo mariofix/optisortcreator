@@ -46,12 +46,23 @@ class CustomerAdminView(SecureModelView):
 class MachineAdminView(AuthModelView):
     form_choices = {
         "type": [
-            ("optisort", "Optisort"),
-            ("weightline", "Weight Line"),
-            ("gubbuncher", "Gub Buncher"),
-        ]
+            ("Optisort", "Optisort"),
+            ("WeightLine", "Weight Line"),
+            ("GubBuncher", "Gub Buncher"),
+        ],
+        "direction": [
+            ("Left", "Left"),
+            ("Right", "Right"),
+        ],
     }
-    column_list = ["number", "type", "model", "direction", "customer"]
+    column_list = [
+        "number",
+        "type",
+        "model",
+        "customer",
+        "direction",
+        "instalation_date",
+    ]
 
 
 class ContactAdminView(SecureModelView):
