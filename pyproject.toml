@@ -14,15 +14,17 @@ flask-admin = "^1.6.0"
 flask-sqlalchemy = "^3.0.2"
 flask-migrate = "^3.1.0"
 email-validator = "^1.3.0"
-flask-debugtoolbar = {git = "https://github.com/pallets-eco/flask-debugtoolbar.git", rev = "master"}
 sqlalchemy-utils = "^0.38.3"
 python-slugify = "^6.1.2"
 flask-security-too = {extras = ["babel", "common", "sqla"], version = "^5.0.2"}
 flask-adminlte3 = {git = "https://github.com/mariofix/Flask-AdminLTE3.git", rev = "master"}
 flask-babel = "^2.0.0"
-
+pymysql = "^1.0.2"
+uuid = "^1.30"
+gunicorn = "*"
 
 [tool.poetry.group.dev.dependencies]
+flask-debugtoolbar = {git = "https://github.com/pallets-eco/flask-debugtoolbar.git", rev = "master"}
 pytest-cov = "*"
 pytest = "*"
 coverage = "*"

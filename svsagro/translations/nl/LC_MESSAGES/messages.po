@@ -1,34 +1,39 @@
 # Dutch translations for PROJECT.
-# Copyright (C) 2022 ORGANIZATION
-# This file is distributed under the same license as the PROJECT project.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
+# Copyright (C) 2022 SVS Agro
+# This file is distributed under the same license as the svsagro-ops
+# project.
+# Mario Hernandez <mariofix@pm.me>, 2022.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: PROJECT VERSION\n"
-"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-11-15 01:21-0300\n"
+"Project-Id-Version:  0.1.0\n"
+"Report-Msgid-Bugs-To: mariofix@pm.me\n"
+"POT-Creation-Date: 2022-12-23 22:01-0300\n"
 "PO-Revision-Date: 2022-11-15 01:01-0300\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Last-Translator: Mario Hernandez <mariofix@pm.me>\n"
 "Language: nl\n"
-"Language-Team: nl <LL@li.org>\n"
+"Language-Team: Mario Hernandez <mariofix@pm.me>\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.11.0\n"
 
-#: svsagro/admin.py:29
+#: svsagro/admin.py:31
 msgid "Logout"
-msgstr ""
+msgstr "Uitloggen"
 
-#: svsagro/admin.py:65
+#: svsagro/admin.py:84
 msgid "New Password"
-msgstr ""
+msgstr "Nieuw paswoord"
 
-#: svsagro/admin.py:82 svsagro/admin.py:83
+#: svsagro/admin.py:105
+msgid "File"
+msgstr "Bestand"
+
+#: svsagro/admin.py:126 svsagro/admin.py:127
 msgid "Security"
-msgstr ""
+msgstr "Beveiliging"
 
 #: svsagro/templates/myadmin3/my_index.html:8
 #: svsagro/templates/myadmin3/my_index.html:13
@@ -38,26 +43,27 @@ msgstr ""
 #: svsagro/templates/myadmin3/my_index.html:12
 #: svsagro/templates/myadmin3/my_master.html:6
 msgid "Home"
-msgstr ""
+msgstr "Startpagina"
 
 #: svsagro/templates/myadmin3/my_master.html:11
 msgid "Search"
-msgstr ""
+msgstr "Zoekopdracht"
 
-#: svsagro/templates/myadmin3/my_master.html:74
+#: svsagro/templates/myadmin3/my_master.html:55
 #: svsagro/templates/security/_menu.html:4
+#: svsagro/templates/security/login_user.html:8
 msgid "Login"
-msgstr ""
+msgstr "Inloggen"
 
 #: svsagro/templates/security/_menu.html:6
 msgid "Register"
-msgstr ""
+msgstr "Registreren"
 
 #: svsagro/templates/security/_menu.html:9
 msgid "Forgot password"
-msgstr ""
+msgstr "Vergeten wachtwoord"
 
 #: svsagro/templates/security/_menu.html:12
 msgid "Confirm account"
-msgstr ""
+msgstr "Account bevestigen"
 

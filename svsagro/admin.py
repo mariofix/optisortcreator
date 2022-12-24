@@ -1,7 +1,8 @@
-from flask_admin import Admin, expose, AdminIndexView
+from flask_admin import Admin, expose, AdminIndexView, form
 from flask_admin.base import MenuLink
+from flask_admin.actions import action
 from svsagro.database import db
-from svsagro.models import Customer, Machine, Contact, User, Role
+from svsagro.models import Customer, Machine, Contact, User, Role, Document
 from svsagro.mixins import SecureModelView, AuthModelView
 from flask_security import hash_password
 from wtforms.fields import PasswordField
@@ -20,11 +21,12 @@ class MyAdminIndexView(AdminIndexView):
 
 
 admin_site = Admin(
-    name="SVS Ops",
+    name="SVSOps",
     template_mode="bootstrap4",
     url="/admin.site",
     base_template="myadmin3/my_master.html",
     index_view=MyAdminIndexView(url="/admin.site"),
+    endpoint="admin",
 )
 admin_site.add_link(MenuLink(name=_("Logout"), url="/logout"))
 
@@ -41,6 +43,7 @@ class CustomerAdminView(SecureModelView):
         ]
     }
     column_list = ["name", "country"]
+    can_view_details = True
 
 
 class MachineAdminView(AuthModelView):
@@ -63,15 +66,18 @@ class MachineAdminView(AuthModelView):
         "direction",
         "instalation_date",
     ]
+    can_view_details = True
 
 
 class ContactAdminView(SecureModelView):
     column_list = ["name", "email", "customer"]
+    can_view_details = True
 
 
 class UserAdminView(SecureModelView):
     form_excluded_columns = ["password"]
     column_list = ["username", "email", "active", "staff", "roles"]
+    can_view_details = True
 
     def scaffold_form(self):
         form_class = super(UserAdminView, self).scaffold_form()
@@ -91,8 +97,34 @@ class RoleAdminView(SecureModelView):
             model.slug = slugify(model.name)
 
 
+class DocumentAdminView(SecureModelView):
+    column_list = ["name", "category", "machine"]
+    form_overrides = {"path": form.FileUploadField}
+    form_args = {
+        "path": {
+            "label": _("File"),
+            "base_path": "svsagro/static/documents/",
+            "allow_overwrite": True,
+        }
+    }
+    form_choices = {
+        "category": [
+            ("Optisort", "Optisort"),
+            ("WeightLine", "Weight Line"),
+            ("GubBuncher", "Gub Buncher"),
+        ]
+    }
+    can_view_details = True
+    column_filters = ["machine", "category"]
+    create_modal = True
+    edit_modal = True
+    column_exclude_list = ["created_at", "updated_at"]
+    form_excluded_columns = ["updated_at"]
+
+
 admin_site.add_view(CustomerAdminView(Customer, db.session, category="SVS Agro"))
 admin_site.add_view(UserAdminView(User, db.session, category=_("Security")))
 admin_site.add_view(RoleAdminView(Role, db.session, category=_("Security")))
 admin_site.add_view(ContactAdminView(Contact, db.session, category="SVS Agro"))
 admin_site.add_view(MachineAdminView(Machine, db.session, category="Strauss"))
+admin_site.add_view(DocumentAdminView(Document, db.session, category="Strauss"))

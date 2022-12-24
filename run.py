@@ -1,6 +1,5 @@
-from svsagro import create_app
+from svsagro import the_app
 
-app = create_app()
 
 if __name__ == "__main__":
-    app.run()
+    the_app.run()

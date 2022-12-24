@@ -31,13 +31,12 @@ def create_app():
     def get_locale():
         if request.args.get("lang"):
             session["lang"] = request.args.get("lang")
-        return session.get("lang", "en")
+        return session.get("lang", app.config.get("BABEL_DEFAULT_LOCALE"))
 
     @babel.timezoneselector
     def get_timezone():
         user = getattr(g, "user", None)
-        if user is not None:
-            return user.timezone
+        return user.timezone or app.config.get("BABEL_DEFAULT_TIMEZONE")
 
     @security.context_processor
     def security_context_processor():
@@ -46,6 +45,7 @@ def create_app():
             admin_view=admin_site.index_view,
             h=admin_helpers,
             get_url=url_for,
+            app=app,
         )
 
     @app.get("/")
@@ -54,3 +54,6 @@ def create_app():
         return "<html><body>/</body></html>"
 
     return app
+
+
+the_app = create_app()

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  0.1.0\n"
 "Report-Msgid-Bugs-To: mariofix@pm.me\n"
-"POT-Creation-Date: 2022-11-15 01:21-0300\n"
+"POT-Creation-Date: 2022-12-23 22:01-0300\n"
 "PO-Revision-Date: 2022-11-15 00:50-0300\n"
 "Last-Translator: Mario Hernandez <mariofix@pm.me>\n"
 "Language: es\n"
@@ -19,15 +19,19 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.11.0\n"
 
-#: svsagro/admin.py:29
+#: svsagro/admin.py:31
 msgid "Logout"
 msgstr "Salir"
 
-#: svsagro/admin.py:65
+#: svsagro/admin.py:84
 msgid "New Password"
 msgstr "Nueva Contraseña"
 
-#: svsagro/admin.py:82 svsagro/admin.py:83
+#: svsagro/admin.py:105
+msgid "File"
+msgstr "Archivo"
+
+#: svsagro/admin.py:126 svsagro/admin.py:127
 msgid "Security"
 msgstr "Seguridad"
 
@@ -45,8 +49,9 @@ msgstr "Inicio"
 msgid "Search"
 msgstr "Buscar"
 
-#: svsagro/templates/myadmin3/my_master.html:74
+#: svsagro/templates/myadmin3/my_master.html:55
 #: svsagro/templates/security/_menu.html:4
+#: svsagro/templates/security/login_user.html:8
 msgid "Login"
 msgstr "Ingresar"
 

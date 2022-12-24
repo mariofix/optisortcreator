@@ -4,6 +4,9 @@ from sqlalchemy.orm import relationship, backref
 from datetime import datetime
 from flask_security import UserMixin, RoleMixin
 from sqlalchemy_utils import generic_repr
+import uuid
+import secrets
+import string
 
 
 class RolesUsers(db.Model):
@@ -69,6 +72,14 @@ class Customer(db.Model, TimestampMixin):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(255), nullable=False)
     country = db.Column(db.String(255), nullable=False)
+    key_uuid = db.Column(
+        db.String(36), nullable=True, default=lambda: str(uuid.uuid4())
+    )
+    key_pass = db.Column(
+        db.String(6),
+        nullable=True,
+        default=lambda: str("".join(secrets.choice(string.digits) for i in range(6))),
+    )
 
     def __str__(self):
         return self.name
@@ -110,7 +121,11 @@ class Document(db.Model, TimestampMixin):
     __tablename__ = "svs_document"
 
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(1024), nullable=False)
+    name = db.Column(db.String(64), nullable=False)
+    path = db.Column(db.String(256), nullable=False)
+    category = db.Column(db.String(10), nullable=True)
+    machine_id = db.Column(db.Integer, db.ForeignKey("svs_machine.id"), nullable=True)
+    machine = db.relationship("Machine")
 
     def __str__(self):
-        return self.number
+        return self.name
