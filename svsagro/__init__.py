@@ -8,6 +8,9 @@ from flask_debugtoolbar import DebugToolbarExtension
 from flask_security import Security, SQLAlchemyUserDatastore
 from flask_admin import helpers as admin_helpers
 from flask_adminlte3 import AdminLTE3
+from dotenv import load_dotenv
+
+load_dotenv(".env")
 
 
 def create_app():
