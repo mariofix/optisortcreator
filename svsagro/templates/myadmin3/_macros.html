@@ -1,0 +1,22 @@
+{% macro language_menu() %}
+{% set languages = config.get("LANGUAGES") %}
+{% set current_lang = session.get("lang") %}
+{% if not current_lang %}
+    {% set current_lang = config.get("BABEL_DEFAULT_LOCALE") %}
+{% endif %}
+{% if languages.keys()|length > 1 %}
+<!-- Language Dropdown Menu -->
+<li class="nav-item dropdown">
+    <a class="nav-link" data-toggle="dropdown" href="#">
+        <i class="flag-icon flag-icon-{{languages[current_lang].get('flag')}}"></i>
+    </a>
+    <div class="dropdown-menu dropdown-menu-right p-0">
+    {% for lang in languages %}
+        <a href="?lang={{lang}}" class="dropdown-item {% if lang == current_lang %}active{% endif %}">
+            <i class="flag-icon flag-icon-{{languages[lang].get('flag')}} mr-2"></i> {{languages[lang].get('name')}}
+        </a>
+    {% endfor %}
+    </div>
+</li>
+{% endif %}
+{% endmacro %}
